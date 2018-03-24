@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Online Presentation</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Chris Oakden" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Online Presentation
+### Chris Oakden
+### 2018/3/24
+
+---
+
+
+
+
+#1. Introduction
+--
+
+###Article from the journal *Phonology* [34(2017): 1-40]
+
+--
+
+
+###&lt;span style="color:red"&gt;Title:&lt;/span&gt; "The phonetic specification of contour tones: evidence from Mandarin rising tone"
+
+--
+
+
+###&lt;span style="color:red"&gt;Authors:&lt;/span&gt; Edward Flemming and Hyesun Cho
+---
+
+#2. Main Points/Research Question
+--
+
+###&lt;span style="color:red"&gt;Research Questions&lt;/span&gt;
+
+--
+
+- What is the nature of the phonetic implementation of contour tone?
+
+--
+
+- Which tonal targets are specified in the phonetic module for Mandarin rising tone?
+
+--
+
+###&lt;span style="color:red"&gt;Main Points&lt;/span&gt;
+
+--
+
+- Slope, magnitude, alignment targets are *all* specified in phonetic representation of Mandarin contour tone
+
+--
+
+- Rising tone is *overspecified*: each target can be derived from the other two
+
+--
+
+- Targets conflict, resolved through compromise (targets represented as weighted, violable constraints)
+
+
+
+---
+
+#3. Explanation of Analysis
+--
+
+###&lt;span style="color:red"&gt;Experiment&lt;/span&gt;
+
+--
+
+- Production experiment of Mandarin rising tone; four native speaker participants
+
+
+--
+
+- Two repetitions of stimuli at a baseline speech rate, two at a *faster* speech rate, two at a *slower* speech rate
+
+--
+
+- Examine three possible targets: segmental **anchor** for tones, **magnitude** of rise ([H] - [L]), and average **slope** of rise
+
+--
+
+###&lt;span style="color:red"&gt;Hypotheses&lt;/span&gt;
+
+--
+
+- If a subset of the possible targets *does not vary* as a function of speech rate, those are specified in the phonetic module
+
+--
+
+- *Systematic variation* as a function of speech rate indicates non-specification
+
+
+---
+
+#3. Explanation of Analysis (cont'd)
+
+--
+
+###&lt;span style="color:red"&gt;Statistical Analysis&lt;/span&gt;
+
+--
+
+- Test possible candidate anchors for each tone using linear mixed effects models (`lme4::lmer`); anchors with lowest deviance are chosen
+
+--
+
+- Fit linear mixed effects models to evaluate target interaction with speech rate (via syllable duration); include by-speaker random slopes and intercepts
+
+--
+
+  + Residuals (from best fit anchor models) ~ syllable duration
+
+  + Raw/normalized magnitude ~ syllable duration
+
+  + Raw/normalized slope ~ syllable duration
+
+--
+
+- Nested model comparison using Likelihood Ratio Tests
+
+--
+
+  + Eliminate the fixed effect of duration
+
+---
+
+#3. Explanation of Analysis (cont'd)
+
+--
+
+###&lt;span style="color:red"&gt;Results&lt;/span&gt;
+
+--
+
+- Model comparisons yield significant effects; all targets **vary systematically** as a function of speech rate
+
+--
+
+  + *Anchors*: decreased duration --&gt; earlier reaching of [L] target/later reaching of [H] target relative to segmental anchor
+
+--
+
+  + *Magnitude*: increased duration --&gt; increase in rise magnitude
+
+--
+
+  + *Slope*: increased duration --&gt; shallowing of average rise slope
+
+--
+
+###&lt;span style="color:red"&gt;Conclusion&lt;/span&gt;
+
+--
+
+- No evidence for dividing between specified/unspecified targets (since all varied as a function of duration)
+
+--
+
+- Assume **all are specified**, and develop a constraint-based analysis of phonetic implementation of rising tone (not relevant to statistical analysis, so not discussed here)
+
+---
+
+#4. Appropriateness/Novelty of Analysis
+
+--
+
+###&lt;span style="color:red"&gt;Was this the best analysis?&lt;/span&gt;
+
+--
+
+- LME models with nested model comparison common in recent phonetics and experimental phonology work
+
+--
+
+- Well-suited to experiments with multiple responses from subjects (thus violating independence assumption)
+
+--
+
+###&lt;span style="color:red"&gt;Did they do something you haven't seen before?&lt;/span&gt;
+
+--
+
+- Calculate the F0 moment corresponding to [L] using the F0 velocity and acceleration
+
+--
+
+- Fit a smoothing spline to the F0 data; implemented in R using `pspline` package
+
+
+---
+
+#5. Presentation of Results
+--
+
+###&lt;span style="color:red"&gt;Did they properly/accurately explain their results?&lt;/span&gt;
+
+--
+
+- Provided slope `\(\beta\)`, chi-squared `\(\chi ^2\)`, and *p*-value for each Likelihood Ratio Test
+
+--
+
+- No consistent **experiment-wise alpha** set; reported *p &lt; 0.05*, *p &lt; 0.01*, *p &lt; 0.001* across different tests
+
+--
+
+- No mention of **model diagnostics** such as homoskedasticity or normal distribution of residuals
+
+--
+
+###&lt;span style="color:red"&gt;Did they properly/accurately interpret their findings?&lt;/span&gt;
+
+--
+
+- Conclusion that all three targets were specified in the phonetic module in spite of varying systematically as a function of speech rate does not follow from the logic of the hypotheses
+
+--
+
+- Systematic variation is posited as an indicator of *non-specification* in the phonetic module; the conclusion seems contradictory 
+
+---
+
+#5. Presentation of Results (cont'd)
+--
+
+###&lt;span style="color:red"&gt;Did tables/graphs facilitate interpretation of results?&lt;/span&gt;
+
+--
+
+- Provide multiple plots of the tested targets against syllable duration
+
+--
+
+  + Segmental anchors
+
+--
+
+  + Slope magnitude
+
+--
+
+  + Rise slope
+  
+--
+
+- Provide mean values and standard deviations in tables where appropriate
+
+--
+
+- Facilitated a clear understanding of the results
+
+
+---
+
+#6. What You Like/Dislike about the Analysis
+--
+
+###&lt;span style="color:red"&gt;Like&lt;/span&gt;
+
+--
+
+- Methodologically-rigorous analysis of contour tone with an explicit theory of phonetic implementation in mind
+
+--
+
+- Further development of Flemming's constraint-based model, and application to novel data 
+
+--
+
+###&lt;span style="color:red"&gt;Dislike&lt;/span&gt;
+
+--
+
+- Speech rate control in experiment
+
+--
+
+  + Highly-subjective, since subjects were able to choose their own baseline
+  
+--
+
+  + Should have been more tightly controlled, since it is the main variable of the analysis
+
+--
+
+- Interpretation of results
+
+--
+
+  + Seemed to contradict their hypothesis; if variation with speech rate indicates non-specification, then the three targets do not provide evidence of specification in the phonetic module
+
+---
+
+#Writeup
+There is a writeup of this presentation available [here](https://coakden.github.io/Online-Presentation)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

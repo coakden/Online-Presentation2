@@ -1,0 +1,302 @@
+---
+title: "Online Presentation"
+subtitle: 
+author: "Chris Oakden"
+date: "2018/3/24"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+#1. Introduction
+--
+
+###Article from the journal *Phonology* [34(2017): 1-40]
+
+--
+
+
+###<span style="color:red">Title:</span> "The phonetic specification of contour tones: evidence from Mandarin rising tone"
+
+--
+
+
+###<span style="color:red">Authors:</span> Edward Flemming and Hyesun Cho
+---
+
+#2. Main Points/Research Question
+--
+
+###<span style="color:red">Research Questions</span>
+
+--
+
+- What is the nature of the phonetic implementation of contour tone?
+
+--
+
+- Which tonal targets are specified in the phonetic module for Mandarin rising tone?
+
+--
+
+###<span style="color:red">Main Points</span>
+
+--
+
+- Slope, magnitude, alignment targets are *all* specified in phonetic representation of Mandarin contour tone
+
+--
+
+- Rising tone is *overspecified*: each target can be derived from the other two
+
+--
+
+- Targets conflict, resolved through compromise (targets represented as weighted, violable constraints)
+
+
+
+---
+
+#3. Explanation of Analysis
+--
+
+###<span style="color:red">Experiment</span>
+
+--
+
+- Production experiment of Mandarin rising tone; four native speaker participants
+
+
+--
+
+- Two repetitions of stimuli at a baseline speech rate, two at a *faster* speech rate, two at a *slower* speech rate
+
+--
+
+- Examine three possible targets: segmental **anchor** for tones, **magnitude** of rise ([H] - [L]), and average **slope** of rise
+
+--
+
+###<span style="color:red">Hypotheses</span>
+
+--
+
+- If a subset of the possible targets *does not vary* as a function of speech rate, those are specified in the phonetic module
+
+--
+
+- *Systematic variation* as a function of speech rate indicates non-specification
+
+
+---
+
+#3. Explanation of Analysis (cont'd)
+
+--
+
+###<span style="color:red">Statistical Analysis</span>
+
+--
+
+- Test possible candidate anchors for each tone using linear mixed effects models (`lme4::lmer`); anchors with lowest deviance are chosen
+
+--
+
+- Fit linear mixed effects models to evaluate target interaction with speech rate (via syllable duration); include by-speaker random slopes and intercepts
+
+--
+
+  + Residuals (from best fit anchor models) ~ syllable duration
+
+  + Raw/normalized magnitude ~ syllable duration
+
+  + Raw/normalized slope ~ syllable duration
+
+--
+
+- Nested model comparison using Likelihood Ratio Tests
+
+--
+
+  + Eliminate the fixed effect of duration
+
+---
+
+#3. Explanation of Analysis (cont'd)
+
+--
+
+###<span style="color:red">Results</span>
+
+--
+
+- Model comparisons yield significant effects; all targets **vary systematically** as a function of speech rate
+
+--
+
+  + *Anchors*: decreased duration --> earlier reaching of [L] target/later reaching of [H] target relative to segmental anchor
+
+--
+
+  + *Magnitude*: increased duration --> increase in rise magnitude
+
+--
+
+  + *Slope*: increased duration --> shallowing of average rise slope
+
+--
+
+###<span style="color:red">Conclusion</span>
+
+--
+
+- No evidence for dividing between specified/unspecified targets (since all varied as a function of duration)
+
+--
+
+- Assume **all are specified**, and develop a constraint-based analysis of phonetic implementation of rising tone (not relevant to statistical analysis, so not discussed here)
+
+---
+
+#4. Appropriateness/Novelty of Analysis
+
+--
+
+###<span style="color:red">Was this the best analysis?</span>
+
+--
+
+- LME models with nested model comparison common in recent phonetics and experimental phonology work
+
+--
+
+- Well-suited to experiments with multiple responses from subjects (thus violating independence assumption)
+
+--
+
+###<span style="color:red">Did they do something you haven't seen before?</span>
+
+--
+
+- Calculate the F0 moment corresponding to [L] using the F0 velocity and acceleration
+
+--
+
+- Fit a smoothing spline to the F0 data; implemented in R using `pspline` package
+
+
+---
+
+#5. Presentation of Results
+--
+
+###<span style="color:red">Did they properly/accurately explain their results?</span>
+
+--
+
+- Provided slope $\beta$, chi-squared $\chi ^2$, and *p*-value for each Likelihood Ratio Test
+
+--
+
+- No consistent **experiment-wise alpha** set; reported *p < 0.05*, *p < 0.01*, *p < 0.001* across different tests
+
+--
+
+- No mention of **model diagnostics** such as homoskedasticity or normal distribution of residuals
+
+--
+
+###<span style="color:red">Did they properly/accurately interpret their findings?</span>
+
+--
+
+- Conclusion that all three targets were specified in the phonetic module in spite of varying systematically as a function of speech rate does not follow from the logic of the hypotheses
+
+--
+
+- Systematic variation is posited as an indicator of *non-specification* in the phonetic module; the conclusion seems contradictory 
+
+---
+
+#5. Presentation of Results (cont'd)
+--
+
+###<span style="color:red">Did tables/graphs facilitate interpretation of results?</span>
+
+--
+
+- Provide multiple plots of the tested targets against syllable duration
+
+--
+
+  + Segmental anchors
+
+--
+
+  + Slope magnitude
+
+--
+
+  + Rise slope
+  
+--
+
+- Provide mean values and standard deviations in tables where appropriate
+
+--
+
+- Facilitated a clear understanding of the results
+
+
+---
+
+#6. What You Like/Dislike about the Analysis
+--
+
+###<span style="color:red">Like</span>
+
+--
+
+- Methodologically-rigorous analysis of contour tone with an explicit theory of phonetic implementation in mind
+
+--
+
+- Further development of Flemming's constraint-based model, and application to novel data 
+
+--
+
+###<span style="color:red">Dislike</span>
+
+--
+
+- Speech rate control in experiment
+
+--
+
+  + Highly-subjective, since subjects were able to choose their own baseline
+  
+--
+
+  + Should have been more tightly controlled, since it is the main variable of the analysis
+
+--
+
+- Interpretation of results
+
+--
+
+  + Seemed to contradict their hypothesis; if variation with speech rate indicates non-specification, then the three targets do not provide evidence of specification in the phonetic module
+
+---
+
+#Writeup
+There is a writeup of this presentation available [here](https://coakden.github.io/Online-Presentation) 
